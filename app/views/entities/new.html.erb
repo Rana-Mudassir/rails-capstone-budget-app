@@ -1,9 +1,16 @@
-<h1>New entity</h1>
+<nav class="bg-blue-500 py-4">
+  <div class="container mx-auto px-4 flex justify-between items-center">
+
+    <div>
+      <%= link_to(group_entities_path, class: "text-white px-2 py-2 rounded-lg hover:bg-blue-700") do %>
+        <i class="fas fa-arrow-left mr-2"></i><% end %>
+    </div>
+
+    <!-- Centered page heading -->
+    <div class="flex-1 text-center text-white text-2xl font-semibold">
+      Add New Transaction
+    </div>
+  </div>
+</nav>
 
 <%= render "form", entity: @entity %>
-
-<br>
-
-<div>
-  <%= link_to "Back to entities", entities_path %>
-</div>

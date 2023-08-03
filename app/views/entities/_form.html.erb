@@ -1,4 +1,4 @@
-<%= form_with(model: entity) do |form| %>
+<%= form_with(model: @entity, url: group_entities_path(@group)) do |form| %>
   <% if entity.errors.any? %>
     <div style="color: red">
       <h2><%= pluralize(entity.errors.count, "error") %> prohibited this entity from being saved:</h2>
@@ -11,22 +11,27 @@
     </div>
   <% end %>
 
-  <div>
-    <%= form.label :name, style: "display: block" %>
-    <%= form.text_field :name %>
-  </div>
-
-  <div>
-    <%= form.label :amount, style: "display: block" %>
-    <%= form.number_field :amount %>
-  </div>
-
-  <div>
+  <%# <div>
     <%= form.label :author_id, style: "display: block" %>
-    <%= form.text_field :author_id %>
-  </div>
+    <%# <%= form.text_field :author_id %> 
+  <%# </div> %>
 
-  <div>
-    <%= form.submit %>
+    <%= form.hidden_field :group_id, value: @group.id %>
+
+    <div class="flex flex-col items-center">
+    <div class="w-full max-w-md">
+      <label class="block text-black mb-2" for="group_name">Transaction Name:</label>
+      <%= form.text_field :name, class: "border border-black p-2 mb-4 w-full", placeholder: "Transaction Name", id: "group_name" %>
+
+      <label class="block text-black mb-2" for="group_icon">Amount:</label>
+      <%= form.number_field :amount, class: "border border-black p-2 mb-4 w-full", placeholder: "Amount", id: "group_icon" %>
+
+      <%# the below i want to show the availbe groups and user can select one %>
+      <label class="block text-black mb-2" for="group_icon">Available Categories:</label>
+      <%= form.collection_select :group_id, current_user.groups, :id, :name, class: "border border-black p-2 mb-4 w-full", id: "group_icon" %>
+    
+    </div>
+
+    <%= form.submit "Create Group", class: "bg-green-500 text-white px-4 py-2 rounded-lg mt-4 hover:bg-green-600 cursor-pointer" %>
   </div>
 <% end %>

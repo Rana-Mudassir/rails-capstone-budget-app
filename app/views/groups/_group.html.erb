@@ -1,12 +1,14 @@
-<div id="<%= dom_id group %>">
-  <p>
-    <strong>Name:</strong>
-    <%= group.name %>
-  </p>
-
-  <p>
-    <strong>Icon:</strong>
-    <%= group.icon %>
-  </p>
-
+<div id="<%= dom_id group %>" class="border p-4 mb-4 cursor-pointer" onclick="window.location.href='<%= group_path(group) %>';">
+  <div class="flex items-center mb-2">
+    <div class="mr-2">
+      <img src="<%= group.icon %>" alt="Group Icon" class="w-8 h-8 rounded-full">
+    </div>
+    <div>
+      <p class="text-lg font-semibold"><%= group.name %></p>
+      <p class="pt-2"><%= group.created_at %></p>
+    </div>
+    <div class="ml-auto">
+      <strong>Amount:</strong> <%=  %>
+    </div>
+  </div>
 </div>

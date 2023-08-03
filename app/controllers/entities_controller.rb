@@ -1,10 +1,13 @@
 class EntitiesController < ApplicationController
-  before_action :set_entity, only: %i[ show edit update destroy ]
+  before_action :set_group
+  before_action :set_entity, only: %i[show edit update destroy]
   before_action :authenticate_user!
 
   # GET /entities or /entities.json
   def index
-    @entities = Entity.all
+    # @entities = Entity.all
+    # @entities = @group.entities
+    @entities = @group&.entities || []
   end
 
   # GET /entities/1 or /entities/1.json
@@ -23,26 +26,20 @@ class EntitiesController < ApplicationController
   # POST /entities or /entities.json
   def create
     @entity = Entity.new(entity_params)
+    @entity.author_id = current_user.id
+    @entity.user_id = current_user.id
+  
+    @entity.groups << @group
 
+    puts "Group ID: #{@group&.id}"
+    puts "Entity Group ID: #{@entity&.group_ids}"
+  
     respond_to do |format|
       if @entity.save
-        format.html { redirect_to entity_url(@entity), notice: "Entity was successfully created." }
+        format.html { redirect_to group_entities_path(group_id: @group.id), notice: "Entity was successfully created." }
         format.json { render :show, status: :created, location: @entity }
       else
         format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @entity.errors, status: :unprocessable_entity }
-      end
-    end
-  end
-
-  # PATCH/PUT /entities/1 or /entities/1.json
-  def update
-    respond_to do |format|
-      if @entity.update(entity_params)
-        format.html { redirect_to entity_url(@entity), notice: "Entity was successfully updated." }
-        format.json { render :show, status: :ok, location: @entity }
-      else
-        format.html { render :edit, status: :unprocessable_entity }
         format.json { render json: @entity.errors, status: :unprocessable_entity }
       end
     end
@@ -64,8 +61,12 @@ class EntitiesController < ApplicationController
       @entity = Entity.find(params[:id])
     end
 
+    def set_group
+      @group = Group.find_by(id: params[:group_id])
+    end
+
     # Only allow a list of trusted parameters through.
     def entity_params
-      params.require(:entity).permit(:name, :amount, :author_id)
+      params.require(:entity).permit(:name, :amount)
     end
 end
