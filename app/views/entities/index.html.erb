@@ -8,13 +8,19 @@
 
     <!-- Centered page heading -->
     <div class="flex-1 text-center text-white text-2xl font-semibold">
-      Entities
+      Transactions
     </div>
   </div>
 </nav>
 
+<div class="container mx-auto px-4 mt-4">
+  <div class="text-center text-lg font-semibold">
+    Total Amount of Transaction: <%= @total_amount %> $
+  </div>
+</div>
 
 <div id="entities">
+  <p style="color: green"><%= notice %></p>
   <% if @entities.any? %>
     <% @entities.each do |entity| %>
       <%= render partial: 'entity', locals: { entity: entity } %>
@@ -22,8 +28,6 @@
   <% else %>
     <p>No entities available right now.</p>
   <% end %>
-</div>
-
 </div>
 
 <div class="bg-green-500 text-white py-4 fixed bottom-0 w-full">

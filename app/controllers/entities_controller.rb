@@ -8,19 +8,12 @@ class EntitiesController < ApplicationController
     # @entities = Entity.all
     # @entities = @group.entities
     @entities = @group&.entities || []
-  end
-
-  # GET /entities/1 or /entities/1.json
-  def show
+    @total_amount = @group&.entities&.sum(:amount) || 0
   end
 
   # GET /entities/new
   def new
     @entity = Entity.new
-  end
-
-  # GET /entities/1/edit
-  def edit
   end
 
   # POST /entities or /entities.json
@@ -30,9 +23,6 @@ class EntitiesController < ApplicationController
     @entity.user_id = current_user.id
   
     @entity.groups << @group
-
-    puts "Group ID: #{@group&.id}"
-    puts "Entity Group ID: #{@entity&.group_ids}"
   
     respond_to do |format|
       if @entity.save
@@ -42,16 +32,6 @@ class EntitiesController < ApplicationController
         format.html { render :new, status: :unprocessable_entity }
         format.json { render json: @entity.errors, status: :unprocessable_entity }
       end
-    end
-  end
-
-  # DELETE /entities/1 or /entities/1.json
-  def destroy
-    @entity.destroy
-
-    respond_to do |format|
-      format.html { redirect_to entities_url, notice: "Entity was successfully destroyed." }
-      format.json { head :no_content }
     end
   end
 
