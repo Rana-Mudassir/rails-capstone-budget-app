@@ -1,0 +1,36 @@
+<nav class="bg-blue-500 py-4">
+  <div class="container mx-auto px-4 flex justify-between items-center">
+    <div>
+      <%= link_to(groups_path, class: "text-white px-2 py-2 rounded-lg hover:bg-blue-700") do %>
+        <i class="fas fa-arrow-left mr-2"></i><% end %>
+    </div>
+
+    <!-- Centered page heading -->
+    <div class="flex-1 text-center text-white text-2xl font-semibold">
+      Transactions
+    </div>
+  </div>
+</nav>
+
+<div class="container mx-auto px-4 mt-4">
+  <div class="text-center text-lg font-semibold">
+    Total Amount of Transaction: <%= @total_amount %> $
+  </div>
+</div>
+
+<div id="entities">
+  <p style="color: green"><%= notice %></p>
+  <% if @entities.any? %>
+    <% @entities.each do |entity| %>
+      <%= render partial: 'entity', locals: { entity: entity } %>
+    <% end %>
+  <% else %>
+    <p>No entities available right now.</p>
+  <% end %>
+</div>
+
+<div class="bg-green-500 text-white py-4 fixed bottom-0 w-full">
+  <div class="container mx-auto text-center">
+    <a href="<%= new_group_entity_path(@group) %>" class="text-white text-xl px-4 py-2">Add new Transaction</a>
+  </div>
+</div>
