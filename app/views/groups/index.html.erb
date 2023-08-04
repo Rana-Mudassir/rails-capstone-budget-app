@@ -12,7 +12,7 @@
 
     <!-- Logout button on the right corner -->
     <div>
-  <%= link_to "Logout", destroy_user_session_path, method: :delete, class: "text-white font-semibold" %>
+  <%= button_to 'Log Out', destroy_user_session_path, method: :delete, data: { confirm: 'Are you sure you want to sign out?' }, class: "text-white font-semibold" %>
 </div>
   </div>
 </nav>
@@ -27,14 +27,8 @@
   </div>
 </div>
 
-
-<%= link_to "New group", new_group_path %>
-
 <div class="bg-green-500 text-white py-4 fixed bottom-0 w-full">
   <div class="container mx-auto text-center">
     <a href="<%= new_group_path %>" class="text-white text-xl px-4 py-2">Add new Category</a>
   </div>
 </div>
-
-
-

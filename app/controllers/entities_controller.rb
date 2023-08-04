@@ -5,8 +5,6 @@ class EntitiesController < ApplicationController
 
   # GET /entities or /entities.json
   def index
-    # @entities = Entity.all
-    # @entities = @group.entities
     @entities = @group&.entities || []
     @total_amount = @group&.entities&.sum(:amount) || 0
   end
@@ -21,12 +19,12 @@ class EntitiesController < ApplicationController
     @entity = Entity.new(entity_params)
     @entity.author_id = current_user.id
     @entity.user_id = current_user.id
-  
+
     @entity.groups << @group
-  
+
     respond_to do |format|
       if @entity.save
-        format.html { redirect_to group_entities_path(group_id: @group.id), notice: "Entity was successfully created." }
+        format.html { redirect_to group_entities_path(group_id: @group.id), notice: 'Entity was successfully created.' }
         format.json { render :show, status: :created, location: @entity }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -36,17 +34,18 @@ class EntitiesController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_entity
-      @entity = Entity.find(params[:id])
-    end
 
-    def set_group
-      @group = Group.find_by(id: params[:group_id])
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_entity
+    @entity = Entity.find(params[:id])
+  end
 
-    # Only allow a list of trusted parameters through.
-    def entity_params
-      params.require(:entity).permit(:name, :amount)
-    end
+  def set_group
+    @group = Group.find_by(id: params[:group_id])
+  end
+
+  # Only allow a list of trusted parameters through.
+  def entity_params
+    params.require(:entity).permit(:name, :amount)
+  end
 end
