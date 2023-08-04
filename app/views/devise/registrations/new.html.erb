@@ -1,29 +1,56 @@
-<h2>Sign up</h2>
+<nav class="bg-blue-500 py-4">
+  <div class="container mx-auto px-2 flex justify-between items-center">
+    <div>
+      <%= link_to root_path do %>
+        <i class="fas fa-arrow-left text-white"></i>
+      <% end %>
+    </div>
 
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-  <%= render "devise/shared/error_messages", resource: resource %>
+    <!-- Centered page heading -->
+    <div class="text-center text-white text-2xl font-semibold">
+      Sign up
+    </div>
 
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+    <!-- Logout button on the right corner -->
+    <div>
+  <%= link_to "Login", new_user_session_path, class: "text-white font-semibold" %>
+</div>
   </div>
+</nav>
 
-  <div class="field">
-    <%= f.label :password %>
-    <% if @minimum_password_length %>
-    <em>(<%= @minimum_password_length %> characters minimum)</em>
-    <% end %><br />
-    <%= f.password_field :password, autocomplete: "new-password" %>
-  </div>
+<div class="container mx-auto mt-4">
 
-  <div class="field">
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
-  </div>
+  <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { class: "max-w-md mx-auto border p-4" }) do |f| %>
+    <%= render "devise/shared/error_messages", resource: resource %>
 
-  <div class="actions">
-    <%= f.submit "Sign up" %>
-  </div>
-<% end %>
+    <div class="mb-4">
+  <%= f.label :full_name, class: "block text-black mb-2" %>
+  <%= f.text_field :name, autofocus: true, autocomplete: "name", class: "border border-black p-2 w-full" %>
+</div>
 
-<%= render "devise/shared/links" %>
+    
+
+    <div class="mb-4">
+      <%= f.label :email, class: "block text-black mb-2" %>
+      <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "border border-black p-2 w-full" %>
+    </div>
+
+    <div class="mb-4">
+      <%= f.label :password, class: "block text-black mb-2" %>
+      <% if @minimum_password_length %>
+        <em>(<%= @minimum_password_length %> characters minimum)</em>
+      <% end %>
+      <%= f.password_field :password, autocomplete: "new-password", class: "border border-black p-2 w-full" %>
+    </div>
+
+    <div class="mb-4">
+      <%= f.label :password_confirmation, class: "block text-black mb-2" %>
+      <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "border border-black p-2 w-full" %>
+    </div>
+
+    <div class="text-center">
+      <%= f.submit "Sign up", class: "bg-green-500 text-white px-4 py-2 rounded-lg mt-4 hover:bg-green-600 cursor-pointer" %>
+    </div>
+  <% end %>
+
+</div>
