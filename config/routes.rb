@@ -5,7 +5,6 @@ Rails.application.routes.draw do
     root to: 'home#index', as: 'home_root'
   end
 
- 
   root 'groups#index'
 
   resources :groups do
