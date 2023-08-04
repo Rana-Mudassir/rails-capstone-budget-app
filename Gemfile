@@ -79,10 +79,3 @@ end
 # Gems i Added
 
 gem 'devise'
-
-group :development, :test do
-  gem 'capybara'
-  gem 'factory_bot_rails'
-  gem 'faker'
-  gem 'rspec-rails', '~> 5.0'
-end
