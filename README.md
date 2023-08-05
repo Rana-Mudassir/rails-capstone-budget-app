@@ -21,10 +21,10 @@
 - [❓ FAQ (OPTIONAL)](#faq)
 - [📝 License](#license)
 
-# 📖 [BudgetPro] <a name="about-project"></a>
+# 📖 [BudgetApp] <a name="about-project"></a>
 
 
-**[BudgetPro]** The Budget App is a web application that helps users manage their expenses by categorizing transactions. It allows users to create categories and add entities (transactions) within each category. Users can track their spending, view the total amount spent in each category, and easily add new transactions.
+**[BudgetApp]** The Budget App is a web application that helps users manage their expenses by categorizing transactions. It allows users to create categories and add entities (transactions) within each category. Users can track their spending, view the total amount spent in each category, and easily add new transactions.
 
 ## 🛠 Built With <a name="built-with"></a>
 
