@@ -14,11 +14,11 @@
  *= require_self
  */
 
- body {
+body {
   background-color: #f1f1f1;
 }
 
- .min-h-screen {
+.min-h-screen {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -39,7 +39,7 @@
 }
 
 .your-form-class {
-  background-color: #ffffff;
+  background-color: #fff;
 }
 
 /* Add a gray horizontal line between each input */
