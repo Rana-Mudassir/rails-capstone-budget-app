@@ -1,5 +1,5 @@
 <nav class="bg-blue-500 py-4">
-  <div class="container mx-auto px-2 flex justify-between items-center">
+  <div class="container mx-auto px-3 flex justify-between items-center">
     <div>
       <%= link_to root_path do %>
         <i class="fas fa-arrow-left text-white"></i>
@@ -11,46 +11,33 @@
       Sign up
     </div>
 
-    <!-- Logout button on the right corner -->
     <div>
-  <%= link_to "Login", new_user_session_path, class: "text-white font-semibold" %>
-</div>
+      <a href="#" class="text-white font-semibold" onclick="document.getElementById('signin-form').submit();">Next</a>
+    </div>
   </div>
 </nav>
 
-<div class="container mx-auto mt-4">
-
-  <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { class: "max-w-md mx-auto border p-4" }) do |f| %>
+<div class="container mx-auto mt-6">
+  <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { class: "your-form-class p-2", id: "signin-form" }) do |f| %>
     <%= render "devise/shared/error_messages", resource: resource %>
 
-    <div class="mb-4">
-  <%= f.label :full_name, class: "block text-black mb-2" %>
-  <%= f.text_field :name, autofocus: true, autocomplete: "name", class: "border border-black p-2 w-full" %>
-</div>
+    <div class="mb-4 mt-4">
+      <%= f.text_field :name, autofocus: true, autocomplete: "name", placeholder: "Full Name" %>
+    </div>
 
+    <div class="mb-4">
+      <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: "Email Address" %>
+    </div>
+
+    <div class="mb-4">
+      <%= f.password_field :password, autocomplete: "new-password", class: "border border-black p-2 w-full", placeholder: "Password" %>
+    </div>
+
+    <div class="mb-4">
+      <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "border border-black p-2 w-full", placeholder: "Confirm Password" %>
+    </div>
     
-
-    <div class="mb-4">
-      <%= f.label :email, class: "block text-black mb-2" %>
-      <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "border border-black p-2 w-full" %>
-    </div>
-
-    <div class="mb-4">
-      <%= f.label :password, class: "block text-black mb-2" %>
-      <% if @minimum_password_length %>
-        <em>(<%= @minimum_password_length %> characters minimum)</em>
-      <% end %>
-      <%= f.password_field :password, autocomplete: "new-password", class: "border border-black p-2 w-full" %>
-    </div>
-
-    <div class="mb-4">
-      <%= f.label :password_confirmation, class: "block text-black mb-2" %>
-      <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "border border-black p-2 w-full" %>
-    </div>
-
-    <div class="text-center">
-      <%= f.submit "Sign up", class: "bg-green-500 text-white px-4 py-2 rounded-lg mt-4 hover:bg-green-600 cursor-pointer" %>
-    </div>
+    <%= f.submit "Submit", class: "hidden-button" %>
   <% end %>
 
 </div>

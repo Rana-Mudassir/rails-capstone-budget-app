@@ -1,5 +1,5 @@
 <nav class="bg-blue-500 py-4">
-  <div class="container mx-auto px-2 flex justify-between items-center">
+  <div class="container mx-auto px-3 flex justify-between items-center">
     <!-- Toggle button (on the left corner) -->
     <div>
       <%= link_to root_path do %>
@@ -14,40 +14,30 @@
 
     <!-- Logout button on the right corner -->
     <div>
-      <%= link_to "Sign Up", new_user_registration_path, class: "text-white font-semibold" %>
+      <a href="#" class="text-white font-semibold" onclick="document.getElementById('login-form').submit();">Login</a>
     </div>
   </div>
 </nav>
 
-<div class="container mx-auto mt-4">
-
-  <%= form_for(resource, as: resource_name, url: session_path(resource_name), html: { class: "max-w-md mx-auto border p-4" }) do |f| %>
+<div class="container mx-auto mt-7">
+  <%= form_for(resource, as: resource_name, url: session_path(resource_name), html: { class: "your-form-class p-2", id: "login-form" }) do |f| %>
     <%= render "devise/shared/error_messages", resource: resource %>
 
     <div class="mb-4">
-      <%= f.label :email, class: "block text-black mb-2" %>
-      <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "border border-black p-2 w-full" %>
+      <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: "Email Address" %>
     </div>
 
     <div class="mb-4">
-      <%= f.label :password, class: "block text-black mb-2" %>
-      <%= f.password_field :password, autocomplete: "current-password", class: "border border-black p-2 w-full" %>
+      <%= f.password_field :password, autocomplete: "current-password", placeholder: "Password" %>
     </div>
 
-    <% if devise_mapping.rememberable? %>
-      <div class="mb-4">
-        <%= f.check_box :remember_me %>
-        <%= f.label :remember_me %>
-      </div>
-    <% end %>
-
-    <div class="text-center">
-      <%= f.submit "Log in", class: "bg-green-500 text-white px-4 py-2 rounded-lg mt-4 hover:bg-green-600 cursor-pointer" %>
-    </div>
+    <%= f.submit "Log in", class: "hidden-button" %>
   <% end %>
 
   <div class="p-2 text-center">
-    <%= render "devise/shared/links" %>
+   <% if devise_mapping.recoverable? && controller_name != 'passwords' %>
+    <%= link_to "Forgot your password?", new_password_path(resource_name) %>
+  <% end %>
   </div>
-  
 </div>
+

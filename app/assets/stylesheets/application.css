@@ -13,3 +13,41 @@
  *= require_tree .
  *= require_self
  */
+
+ body {
+  background-color: #f1f1f1;
+}
+
+ .min-h-screen {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.flex-grow {
+  flex-grow: 1;
+}
+
+.hidden-button {
+  display: none;
+}
+
+.your-form-class input {
+  border: none;
+  padding: 0;
+}
+
+.your-form-class {
+  background-color: #ffffff;
+}
+
+/* Add a gray horizontal line between each input */
+.your-form-class .mb-4:not(:last-child) {
+  border-bottom: 1px solid #ccc;
+  padding-bottom: 8px;
+}
+
+.your-form-class input:focus {
+  outline: none;
+}
