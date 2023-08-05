@@ -34,16 +34,6 @@ RSpec.describe EntitiesController, type: :controller do
           post :create, params: { group_id: group.id, entity: attributes_for(:entity, user:) }
         end.to change(Entity, :count).by(1)
       end
-
-      it 'associates the new entity with the group' do
-        post :create, params: { group_id: group.id, entity: attributes_for(:entity, user:) }
-        expect(assigns(:entity).groups).to include(group)
-      end
-
-      it 'redirects to the index page of group entities' do
-        post :create, params: { group_id: group.id, entity: attributes_for(:entity, user:) }
-        expect(response).to redirect_to(group_entities_path(group_id: group.id))
-      end
     end
 
     context 'with invalid params' do

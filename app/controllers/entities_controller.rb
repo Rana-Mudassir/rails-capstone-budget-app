@@ -5,7 +5,7 @@ class EntitiesController < ApplicationController
 
   # GET /entities or /entities.json
   def index
-    @entities = @group&.entities || []
+    @entities = @group&.entities&.order(created_at: :desc) || []
     @total_amount = @group&.entities&.sum(:amount) || 0
   end
 
@@ -20,11 +20,15 @@ class EntitiesController < ApplicationController
     @entity.author_id = current_user.id
     @entity.user_id = current_user.id
 
-    @entity.groups << @group
-
     respond_to do |format|
       if @entity.save
-        format.html { redirect_to group_entities_path(group_id: @group.id), notice: 'Entity was successfully created.' }
+        # Add the entity to the selected group
+        if params[:entity][:group_id].present?
+          @group = Group.find_by(id: params[:entity][:group_id])
+          @entity.groups << @group if @group.present?
+        end
+
+        format.html { redirect_to group_path(@group), notice: 'Entity was successfully created.' }
         format.json { render :show, status: :created, location: @entity }
       else
         format.html { render :new, status: :unprocessable_entity }
