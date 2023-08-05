@@ -16,6 +16,4 @@ test:
 
 production:
   <<: *default
-  database: rails_capstone_budget_app_production1
-  username: mudassir_nazir
-  password: 1234
+  url: <%= ENV['DATABASE_URL'] %>
