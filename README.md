@@ -52,7 +52,7 @@
 ### Key Features <a name="key-features"></a>
 
 - **[Categories: Users can view aand create categories.]**
-- **[Entities (Transactions): Entities are ordered by the creation date, with the most recent ones displayed first..]**
+- **[Entities (Transactions): User Can see total amount of transactions spend on each category]**
 - **[Homepage: The app provides a homepage with a default index action.]**
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
