@@ -1,0 +1,12 @@
+<div class="min-h-screen flex flex-col items-center justify-center bg-gray-100">
+  <div class="flex flex-col items-center justify-center flex-grow"> <!-- Adjusted this line -->
+    <h3 class="text-3xl font-semibold text-center mb-4">Budget App</h3>
+    <p class="text-center text-gray-600 mb-8">A simple and effective budget management tool.</p>
+  </div>
+  <div class="mt-auto w-full">
+    <div class="flex flex-col items-center md:flex-row md:justify-center">
+      <%= link_to "LOG IN", new_user_session_path, class: "bg-blue-500 text-white px-4 py-4 hover:bg-blue-600 w-full md:w-auto text-center md:text-left mb-2 md:mb-0 md:mr-2" %>
+      <%= link_to "SIGN UP", new_user_registration_path, class: "bg-silver-500 text-black-100 px-4 py-4 hover:bg-blue-600 w-full md:w-auto text-center md:text-left" %>
+    </div>
+  </div>
+</div>

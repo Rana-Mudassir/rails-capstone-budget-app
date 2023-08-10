@@ -1,0 +1,53 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS (and SCSS, if configured) file within this directory, lib/assets/stylesheets, or any plugin's
+ * vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any other CSS
+ * files in this directory. Styles in this file should be added after the last require_* statement.
+ * It is generally better to create a new file per style scope.
+ *
+ *= require_tree .
+ *= require_self
+ */
+
+body {
+  background-color: #f1f1f1;
+}
+
+.min-h-screen {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.flex-grow {
+  flex-grow: 1;
+}
+
+.hidden-button {
+  display: none;
+}
+
+.your-form-class input {
+  border: none;
+  padding: 0;
+}
+
+.your-form-class {
+  background-color: #fff;
+}
+
+/* Add a gray horizontal line between each input */
+.your-form-class .mb-4:not(:last-child) {
+  border-bottom: 1px solid #ccc;
+  padding-bottom: 8px;
+}
+
+.your-form-class input:focus {
+  outline: none;
+}
